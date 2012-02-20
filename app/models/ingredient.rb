@@ -9,6 +9,7 @@ class Ingredient < ActiveRecord::Base
   end
 
   def +(another)
+    raise "Cannot add ingredients together.  Units do not match: #{self.unit} != #{another.unit}" if self.unit != another.unit
     self.class.new(:quantity => another.quantity + self.quantity, :unit => self.unit)
   end
 

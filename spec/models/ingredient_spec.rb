@@ -15,18 +15,18 @@ describe Ingredient do
     end
   end
 
-  it "should have a unit" do
+  it "must have a unit" do
     ingredient = Ingredient.new
     ingredient.valid?.should eq false
     ingredient.should have(1).errors_on(:unit)
   end
 
-  it "should have ingredient unit" do
+  it "should know its unit" do
     ingredient = Ingredient.new(:quantity => 1, :unit => "oz")
     ingredient.unit.should eq "oz"
   end
 
-  it "should singularize its units" do
+  it "should singularize its unit" do
     ingredient = Ingredient.new(:quantity => 2, :unit => "cups")
     ingredient.unit.should eq "cup"
   end
@@ -40,8 +40,8 @@ describe Ingredient do
 
   it "should not be addable to another with a different unit" do
     first = Ingredient.new(:quantity => 1, :unit => "cup")
-    second = Ingredient.new(:quantity => 2, :unit => "cups")
-
+    second = Ingredient.new(:quantity => 2, :unit => "ounces")
+    lambda { first + second }.should raise_error
   end
 
   it "should be comparable to another" do
