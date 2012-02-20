@@ -3,6 +3,7 @@ class CreateIngredients < ActiveRecord::Migration
     create_table :ingredients do |t|
       t.decimal :quantity
       t.string :unit
+      t.string :food
       t.timestamps
     end
   end

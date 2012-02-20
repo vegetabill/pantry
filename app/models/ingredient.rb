@@ -1,8 +1,10 @@
 class Ingredient < ActiveRecord::Base
   include Comparable
 
+  belongs_to :recipe
+
   validates :quantity, :numericality => { :greater_than => 0 }
-  validates_presence_of :unit
+  validates_presence_of :unit, :food
 
   def unit=(unit)
     super unit.singularize

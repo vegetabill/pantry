@@ -15,6 +15,12 @@ describe Ingredient do
     end
   end
 
+  it "must have a food" do
+    ingredient = Ingredient.new
+    ingredient.valid?.should eq false
+    ingredient.should have(1).errors_on(:food)
+  end
+
   it "must have a unit" do
     ingredient = Ingredient.new
     ingredient.valid?.should eq false
