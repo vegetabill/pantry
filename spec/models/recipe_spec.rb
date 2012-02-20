@@ -17,4 +17,12 @@ describe Recipe do
     recipe.ingredients.create! :quantity => 15, :unit => 'oz', :food => 'chickpeas'
     recipe.ingredients.count.should eq 1
   end
+
+  it "can be built from lines of text" do
+    lines = ["1 quart karo syrup","1 tsp red food coloring", "1/4 C chocolate syrup"]
+    recipe = Recipe.from_list "Fake Blood", lines
+    recipe.save!
+    recipe.ingredients.count.should eq 3
+    recipe.ingredients.first.food.should eq "karo syrup"
+  end
 end

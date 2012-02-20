@@ -7,6 +7,11 @@ describe Ingredient do
     ingredient.quantity.should eq 0
   end
 
+  it "should automatically convert fractional quantities" do
+    ingredient = Ingredient.new(:quantity => '1/4')
+    ingredient.quantity.should eq 0.25
+  end
+
   it "should not allow less than 0 as quantity" do
     [-1, 0, nil].each do |qty|
       ingredient = Ingredient.new(:quantity => qty)
