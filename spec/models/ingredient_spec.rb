@@ -8,11 +8,17 @@ describe Ingredient do
   end
 
   it "should not allow less than 0 as quantity" do
-    [-1, 0].each do |qty|
+    [-1, 0, nil].each do |qty|
       ingredient = Ingredient.new(:quantity => qty)
       ingredient.valid?.should eq false
       ingredient.should have(1).errors_on(:quantity)
     end
+  end
+
+  it "should have a unit" do
+    ingredient = Ingredient.new
+    ingredient.valid?.should eq false
+    ingredient.should have(1).errors_on(:unit)
   end
 
   it "should have ingredient unit" do

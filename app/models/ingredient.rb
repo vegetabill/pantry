@@ -2,6 +2,7 @@ class Ingredient < ActiveRecord::Base
   include Comparable
 
   validates :quantity, :numericality => { :greater_than => 0 }
+  validates_presence_of :unit
 
   def unit=(unit)
     super unit.singularize
